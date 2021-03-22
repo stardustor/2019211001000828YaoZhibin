@@ -11,12 +11,12 @@
     <title>Title</title>
 </head>
 <body>
-<form>
-    Username:<input type="text" name="name" required><br/>
-    Gender:<input type="radio" name="gender" text="man" required>man
-    <input type="radio" name="gender" text="woman">woman<br/>
+<form method ="post" action="../register">
+    Username:<input type="text" name="username" required><br/>
+    Gender:<input type="radio" name="gender" value="man" required>man
+    <input type="radio" name="gender" value="woman">woman<br/>
     Id:<input type="text" name="id" required><br/>
-    E-mail:<input type="text" name="e-mail" required><br/>
+    E-mail:<input type="text" name="email" required><br/>
     Password:<input type="password" name="password" required><br/>
     Birthday:<input type="text" name="birthday" required><br/>
     <input type="submit" name="send data to servlet"><br/>
