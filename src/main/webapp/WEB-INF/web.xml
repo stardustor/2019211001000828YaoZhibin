@@ -81,6 +81,10 @@
         <servlet-name>JDBCDemoServlet</servlet-name>
         <servlet-class>com.YaoZhibin.week4.JDBCDemoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.YaoZhibin.week5.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>JDBCDemoServlet</servlet-name>
         <url-pattern>/jdbc</url-pattern>
