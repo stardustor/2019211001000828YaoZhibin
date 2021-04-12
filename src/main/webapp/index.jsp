@@ -6,11 +6,21 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
-<h1><%= "Hello World!yaozhibinnb" %>
+<h1><%= "Hello World!yaozhibin" %>
 </h1>
+<h2>
+    Welcome To My Online Shop Home Page
+</h2>
 <br/>
-
-This is my jsp page
+<form method="get" target="'blank'" action="search">
+    <input type="text" name="txt" size="30"/>
+    <select name="search">
+    <option value="baidu">Baidu</option>
+    <option value="bing">Bing</option>
+    <option value="google">Google</option>
+    </select>
+    <input type="submit" value="Search"/>
+</form>
 </body>
 </html>
 <%@include file="footer.jsp"%>

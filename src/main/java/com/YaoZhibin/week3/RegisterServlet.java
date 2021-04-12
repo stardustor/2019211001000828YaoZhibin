@@ -13,7 +13,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        String driver=getServletConfig().getServletContext().getInitParameter("driver");
+       /* String driver=getServletConfig().getServletContext().getInitParameter("driver");
         String url=getServletConfig().getServletContext().getInitParameter("url");
         String username=getServletConfig().getServletContext().getInitParameter("username");
         String password=getServletConfig().getServletContext().getInitParameter("password");
@@ -23,7 +23,8 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("-->"+con);
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        }
+        }*/
+        con = (Connection) getServletContext().getAttribute("con");
     }
 
 
@@ -76,10 +77,10 @@ public class RegisterServlet extends HttpServlet {
                     "  </tr>\n" +
                     "</table>");
 
-            ps = con.prepareStatement("select * from usertable;");
-            rs = ps.executeQuery();
+          /*  ps = con.prepareStatement("select * from usertable;");
+            rs = ps.executeQuery();*/
 
-
+            response.sendRedirect("login.jsp");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
