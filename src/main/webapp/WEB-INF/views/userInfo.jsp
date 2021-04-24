@@ -9,27 +9,32 @@
 <%@include file="header.jsp"%>
 <h1>User Info</h1>
 <%
-User user=(User)request.getAttribute("user");
+/*     Cookie [] allCookies=request.getCookies();
+    for(Cookie c:allCookies){
+        out.println("<br/>"+c.getName()+" --- "+c.getValue());
+    }*/
+%>
+<%
+User u=(User)session.getAttribute("user");
 
 %>
 
 <table border="2">
     <tr>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Email</th>
-        <th>Gender</th>
-        <th>Id</th>
-        <th>Birthday</th>
+        <td>Username</td><td><%=u.getUsername()%></td>
+    </tr><tr>
+        <td>Password</td><td><%=u.getPassword()%></td>
+</tr><tr>
+        <td>Email</td><td><%=u.getEmail()%></td>
+</tr><tr>
+        <td>Gender</td> <td><%=u.getGender()%></td>
+</tr><tr>
+        <td>Id</td><td><%=u.getId()%></td>
+</tr><tr>
+        <td>Birthday</td> <td><%=u.getBirthday()%></td>
     </tr>
     <tr>
-        <td><%=user.getUsername()%></td>
-        <td><%=user.getPassword()%></td>
-        <td><%=user.getEmail()%></td>
-        <td><%=user.getGender()%></td>
-        <td><%=user.getId()%></td>
-        <td><%=user.getBirthday()%></td>
+    <a href="updateUser">Update User</a>
     </tr>
-
 </table>
 <%@include file="footer.jsp"%>
