@@ -1,36 +1,47 @@
 package com.YaoZhibin.controller;
 
 import com.YaoZhibin.Dao.ProductDao;
-import com.YaoZhibin.model.Product;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet(name = "ProductListServlet", value = "/admin/ProductList")
-public class ProductListServlet extends HttpServlet {
+@WebServlet("/getImg")
+public class GetImgServlet extends HttpServlet {
     Connection con=null;
+
     @Override
     public void init() throws ServletException {
-        con = (Connection) getServletContext().getAttribute("con");
+        con= (Connection) getServletContext().getAttribute("con");
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        ProductDao dao=new ProductDao();
+        int id=0;
+        if(request.getParameter("id")!=null){
+            id=Integer.parseInt(request.getParameter("id"));
+        }
+
         try {
-            ProductDao productDao=new ProductDao();
-            List<Product> productList=productDao.findAll(con);
-            request.setAttribute("productList",productList);
+            byte[] imgByte=new byte[0];
+            imgByte=dao.getPictureById(id,con);
+            if(imgByte!=null){
+                response.setContentType("image/gif");
+                OutputStream os=response.getOutputStream();
+                os.write(imgByte);
+                os.flush();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        request.getRequestDispatcher("/WEB-INF/views/admin/productList.jsp").forward(request,response);
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }

@@ -3,10 +3,7 @@ package com.YaoZhibin.Dao;
 import com.YaoZhibin.model.Product;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,12 +124,11 @@ public class ProductDao implements  IProductDao{
         String sql="select * from Product";
         PreparedStatement ps=con.prepareStatement(sql);
         ResultSet rs=ps.executeQuery();
-        Product product=new Product();
-        if(rs.next()) {
+        while(rs.next()) {
+            Product product =new Product();
             product.setProductID(rs.getInt("ProductID"));
             product.setProductName(rs.getString("ProductName"));
             product.setProductDescription(rs.getString("ProductDescription"));
-            product.setPicture((InputStream) rs.getBlob("Picture"));
             product.setPrice(rs.getDouble("Price"));
             product.setCategoryID(rs.getInt("CategoryID"));
             productList.add(product);
@@ -174,5 +170,17 @@ public class ProductDao implements  IProductDao{
             productList.add(product);
         }
         return productList;
+    }
+    public byte[] getPictureById(int productId, Connection con) throws SQLException {
+        byte[] imgByte = null;
+        String sql = "select picture from product where productID=?";
+        PreparedStatement pt = con.prepareStatement(sql);
+        pt.setInt(1, productId);
+        ResultSet rs = pt.executeQuery();
+        while (rs.next()) {
+            Blob blob = rs.getBlob("picture");
+            imgByte = blob.getBytes(1, (int) blob.length());
+        }
+        return imgByte;
     }
 }
