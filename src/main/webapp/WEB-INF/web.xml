@@ -92,4 +92,13 @@
         <welcome-file>home</welcome-file>
     </welcome-file-list>
 
+    <filter>
+        <filter-name>YaoZhibinFilter</filter-name>
+        <filter-class>com.lab2.YaoZhibinFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>YaoZhibinFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
+
 </web-app>
