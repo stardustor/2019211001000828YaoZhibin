@@ -92,4 +92,22 @@
         <welcome-file>home</welcome-file>
     </welcome-file-list>
 
+    <filter>
+        <filter-name>YaoZhibinFilter</filter-name>
+        <filter-class>com.lab2.YaoZhibinFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>YaoZhibinFilter</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>CalServlet</servlet-name>
+        <servlet-class>com.lab3.CalServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HitCountServlet</servlet-name>
+        <servlet-class>com.lab3.HitCountServlet</servlet-class>
+    </servlet>
+
 </web-app>
